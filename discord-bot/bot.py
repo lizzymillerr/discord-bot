@@ -11,6 +11,7 @@ EMOJI = "👍"
 intents = discord.Intents.default()
 intents.guilds = True
 intents.members = True
+intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -63,3 +64,4 @@ async def request(interaction: discord.Interaction, title: str, description: str
 import os
 TOKEN = os.getenv("DISCORD_TOKEN") 
 bot.run(TOKEN)
+
