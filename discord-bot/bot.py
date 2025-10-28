@@ -69,7 +69,7 @@ async def on_ready():
     except Exception as e:
         print(e)
 
--
+
 async def handle(request):
     return web.Response(text="Bot is running!")
 
@@ -89,6 +89,7 @@ async def main():
     await bot.start(os.environ["DISCORD_TOKEN"])  # Start Discord bot
 
 asyncio.run(main())
+
 
 
 
