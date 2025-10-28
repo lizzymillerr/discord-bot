@@ -15,12 +15,15 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+GUILD_ID = 1415112515574038610
+
 @bot.event
 async def on_ready():
     print(f"✅ Logged in as {bot.user}")
     try:
-        synced = await bot.tree.sync()
-        print(f"✅ Synced {len(synced)} slash commands.")
+        guild = discord.Object(id=GUILD_ID)
+        synced = await bot.tree.sync(guild=guild)
+        print(f"✅ Synced {len(synced)} slash commands to the guild.")
     except Exception as e:
         print(e)
 
@@ -64,4 +67,5 @@ async def request(interaction: discord.Interaction, title: str, description: str
 import os
 TOKEN = os.getenv("DISCORD_TOKEN") 
 bot.run(TOKEN)
+
 
