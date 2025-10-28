@@ -80,14 +80,14 @@ async def start_web():
     app.add_routes([web.get("/", handle)])
     runner = web.AppRunner(app)
     await runner.setup()
-    port = int(os.environ.get("PORT", 10000))  # Render assigns PORT env
+    port = int(os.environ.get("PORT", 10000))  
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
     print(f"✅ Dummy web server running on port {port}")
     while True:
-        await asyncio.sleep(3600)  # keep alive
+        await asyncio.sleep(3600) 
 
-# Run dummy server in background alongside bot
 asyncio.get_event_loop().create_task(start_web())
+
 
 
