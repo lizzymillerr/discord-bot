@@ -46,10 +46,12 @@ async def request(interaction: discord.Interaction, title: str, description: str
                 await interaction_button.user.add_roles(role_to_give)
                 await interaction_button.response.send_message(f"✅ Added {role_to_give.name}", ephemeral=True)
 
-   
+    
     message = await interaction.channel.send(
+        content=f"{role_to_give.mention}",  # ping role in message
         embed=embed,
-        view=RoleButton()
+        view=RoleButton(),
+        allowed_mentions=discord.AllowedMentions(roles=True)  # ⚡ important for ping to work
     )
     await message.add_reaction(EMOJI)
 
@@ -67,7 +69,7 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-
+-
 async def handle(request):
     return web.Response(text="Bot is running!")
 
@@ -83,9 +85,8 @@ async def start_web_server():
 
 
 async def main():
-    await start_web_server()              # Start dummy web server
+    await start_web_server()  # Start dummy web server
     await bot.start(os.environ["DISCORD_TOKEN"])  # Start Discord bot
-
 
 asyncio.run(main())
 
