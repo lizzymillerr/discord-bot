@@ -8,7 +8,7 @@ from aiohttp import web
 
 ROLE_ID = 1432681974308274327  # Role given when clicking the button (ping role)
 EMOJI = "👍"  
-GUILD_ID = 1415112515574038610
+GUILD_ID = 1430175314583224450
 
 
 intents = discord.Intents.default()
@@ -26,7 +26,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 )
 @app_commands.describe(
     title="Title for your request",
-    description="What your character is doing or looking for"
+    description="Description for your request"
 )
 async def request(interaction: discord.Interaction, title: str, description: str):
     guild = interaction.guild
@@ -34,7 +34,6 @@ async def request(interaction: discord.Interaction, title: str, description: str
 
     embed = discord.Embed(title=title, description=description, color=0x5865F2)
     embed.set_author(name=interaction.user.display_name, icon_url=interaction.user.display_avatar.url)
-    embed.set_image(url=interaction.user.display_avatar.url)
 
     class RoleButton(discord.ui.View):
         @discord.ui.button(label="Ping Me!", style=discord.ButtonStyle.blurple)
@@ -89,6 +88,7 @@ async def main():
 
 
 asyncio.run(main())
+
 
 
 
